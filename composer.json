@@ -1,0 +1,10 @@
+{
+    "name": "pcat/marussia",
+    "autoload": {
+        "psr-4": {
+            "Pcat\\Marussia\\": "src/"
+        }
+    },
+    "require": {
+    }
+}
