@@ -9,19 +9,17 @@ function skill_vezdekod($request_message)
         if (strcmp($token, 'вездекод')) $isVezdekod = true;
     }
 
+    $text = 'Не понимаю ваш запрос';
+    $tts = 'Не поним`аю ваш запр`ос';
     if ($isEkivoki and $isVezdekod) {
         $text = 'Привет вездекодерам!';
         $tts = 'Прив`ет вездек`одерам!';
-    }
-    else {
-        $text = 'Не понимаю ваш запрос';
-        $tts = 'Не поним`аю ваш запр`ос';
     }
     return [
         'response' => [
             'text' => $text,
             'tts' => $tts,
-            'end_session' => FALSE
+            'end_session' => true,
         ],
         'session' => [
             'user_id' => $request_message['session']['user_id'],
@@ -36,6 +34,4 @@ $request_message = json_decode(file_get_contents('php://input'), true);
 $response_message = skill_vezdekod($request_message);
 
 header('Content-Type: application/json');
-
-$response_message['response']['end_session'] = true;
 echo json_encode($response_message);
